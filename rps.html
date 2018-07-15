@@ -1,0 +1,50 @@
+<!DOCTYPE Html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+  <script>
+
+  let pScore = 0
+  let cScore = 0
+  let tieCount = 0
+
+  function game () {
+      let playerSelection = prompt ("rock, paper or scissors?").toLowerCase();
+      let computerSelection = computerPlay();
+      return playRound(playerSelection, computerSelection);
+
+      function computerPlay() {
+          let cChoices = ["Rock", "Paper", "Scissors"];
+          let cThrow = Math.floor(Math.random()* 3);
+          return cChoices[cThrow].toLowerCase();
+      }
+      function playRound() {
+          console.log("The player selected" + playerSelection);
+          console.log("The computer selected " + computerSelection)
+          if (playerSelection === computerSelection) {
+              console.log("Tie Match! go again!");
+              tieCount++;
+          } else if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "rock") {
+              console.log("Player wins! outstanding job!");
+              pScore++;
+          } else {
+              console.log("phooey! the computer cheated!...or maybe I am a sore loser");
+              cScore++;
+      }
+          console.log("Your Score = " + pScore, "Computer Score = " + cScore, "Number of Ties = " + tieCount)
+      }
+  }
+  for (let i = pScore + cScore; i = (pScore + cScore) < 5; ++i) {
+      game();
+  }
+  if (pScore > cScore) {
+      console.log("MESS WITH THE BEST, DIE LIKE THE REST! YOU WIN!!!");
+  } else {
+      console.log("WHAT A LOSER!, TRY AGAIN WIMP!!");
+  }
+
+  </script>
+</body>
+</html>
