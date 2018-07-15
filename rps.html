@@ -11,7 +11,7 @@
   let ties = 0
 
   function game () {
-      let playerSelection = prompt ("rock, paper or scissors?").toLowerCase();
+      let playerSelection = prompt("rock, paper or scissors?").toLowerCase();
       let computerSelection = computerPlay();
       return playRound(playerSelection, computerSelection);
 
@@ -19,36 +19,52 @@
           let cChoices = ["Rock", "Paper", "Scissors"];
           let cThrow = Math.floor(Math.random()* 3);
           return cChoices[cThrow].toLowerCase();
-      }
+
+}
 
       function playRound() {
         console.log("Player picked " + playerSelection);
-        console.log("Computer selected " + computerSelection);
-        if (playerSelection === computerSelection){
-          console.log("Tie game, nobody wins this round")
+        console.log("Computer selected " + computerSelection)
+        if (playerSelection === computerSelection) {
+          console.log("Tie game, move on to the next round and play again");
           ties++
-        }
-        else if (playerSelection === "rock" && computerSelection === "paper"){
+      } else if (playerSelection == "rock" && computerSelection == "paper"){
               console.log("You lose...what a wimp");
               cScore++;
-      } else if (playerSelection === "rock" && computerSelection === "scissors"){
+
+      } else if (playerSelection == "rock" && computerSelection == "scissors"){
               console.log("You win, outstanding job!");
               pScore++;
-      } else if (playerSelection === "paper" && computerSelection === "rock"){
+
+      } else if (playerSelection == "paper" && computerSelection == "rock"){
               console.log("You win, outstanding job!");
               pScore++;
-      } else if (playerSelection === "paper" && computerSelection === "scissors"){
+
+      } else if (playerSelection == "paper" && computerSelection == "scissors"){
               console.log("You lose...what a wimp");
-              cScore++
-      } else if (playerSelection === "scissors" && computerSelection === "paper"){
+              cScore++;
+
+      } else if (playerSelection == "scissors" && computerSelection == "paper"){
               console.log("You win, outstanding job!");
               pScore++;
-      } else if (playerSelection === "scissors" && computerSelection === "rock"){
+
+      } else if (playerSelection == "scissors" && computerSelection == "rock"){
               console.log("You lose...what a wimp");
-              cScore++
+
+      } else {
+        console.log("something has gone terribly wrong");
       }
-
-
+      console.log("Player score is " + pScore, "Computer score is " + cScore, "Ties = " + ties)
+    }
+}
+      for (let gameCount = pScore + cScore; gameCount = (pScore + cScore) < 5; ++gameCount) {
+              game();
+          }
+          if (pScore > cScore) {
+            console.log("You are a gentleman and a scholar! great show! You WIN!!!");
+          } else {
+            console.log("loser...get out of my sight");
+          }
   </script>
 </body>
 </html>
