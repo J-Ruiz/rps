@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title></title>
+</head>
+<body>
+
+  <div class="scoreBoard">
+  <p id="pScoreBoard"> Player score 0</p>
+  <p id="cScoreBoard"> Computer score 0  </p>
+  <p id="tScoreBoard"> Tie count 0 </p>
+</div>
+
+
+<div class="outcome">
+  <p>Choose Rock, Paper or Scissors!!!<p>
+</div>
+
+  <div id="container">
+    <button id="rock" img="//scissors.jpeg">Rock</button>
+    <input type="image" id="rock" src= "https://i.kym-cdn.com/entries/icons/original/000/018/124/therock.JPG" width= "200px" height= "200px"/>
+    <button id="paper">Paper</button>
+    <input type="image" id="paper" src= "https://i.pinimg.com/originals/5f/11/43/5f11435077b9d633d0066916e6b9ebfe.jpg" width= "200px" height= "200px"/>
+    <button id="scissors">Scissors</button>
+    <input type="image" id="scissors" src= "https://vectortoons.com/wp-content/uploads/2015/05/scissors-emoji-collection-002-500x640.jpg" width= "200px" height= "200px"/>
+</div>
+
+  <script>
+
+  let pScore = 0
+  let cScore = 0
+  let ties = 0
+  let roundCount = 0
+
+  // a node list that selects all of the input buttons(rock paper and scissors)//
+  const inputs = document.querySelectorAll('input');
+
+  // targets const input which selects all inputs and for each one..//
+  inputs.forEach((input) => {
+
+ // takes the data of the players click and uses it to match up against the
+ // randomized computer selection//
+    input.addEventListener('click', () => {
+      playerSelection = input.id;
+    });
+ // runs the game function and checks to see if the player or computer has won
+ // the game so it can reset the game score to 0...if not it updates the score//
+    input.addEventListener('click', game);
+    input.addEventListener('click', () =>{
+    if (pScore < 5 && cScore < 5){
+      pScoreBoard.textContent = "Player score " + pScore.toString();
+      cScoreBoard.textContent = "Computer score " + cScore.toString();
+      tScoreBoard.textContent = "Tie Score " + ties.toString();
+    } else if (pScore == 5 && cScore < 5){
+    alert("You Win! Play again!");
+    pScore = 0;
+    cScore = 0;
+    ties = 0;
+    pScoreBoard.textContent = "Player score " + pScore.toString();
+    cScoreBoard.textContent = "Computer score " + cScore.toString();
+    tScoreBoard.textContent = "Tie Score " + ties.toString();
+  } else if (pScore < 5 && cScore == 5) {
+    alert("You Lose. Try again loser!");
+    pScore = 0;
+    cScore = 0;
+    ties = 0;
+    pScoreBoard.textContent = "Player score " + pScore.toString();
+    cScoreBoard.textContent = "Computer score " + cScore.toString();
+    tScoreBoard.textContent = "Tie Score " + ties.toString();
+  } else {
+    game()
+  }
+    });
+  });
+
+
+//runs the game function in order to play rounds of rock,paper,scissors//
+  function game() {
+      let computerSelection = computerPlay();
+      return playRound(playerSelection, computerSelection);
+
+
+//randomly selects a choice for the computer to match up against player choice//
+    function computerPlay() {
+          let cChoices = ["Rock", "Paper", "Scissors"];
+          let cThrow = Math.floor(Math.random()* 3);
+          return cChoices[cThrow].toLowerCase();;
+        }
+//Plays the rounds of rock, paper, scissors //
+    function playRound() {
+      // if the player and computer tie//
+        if (playerSelection === computerSelection) {
+          alert("Player selected " + playerSelection + " and" + " the Computer selected " + computerSelection + ": Tie game!!, move on to the next round and play again");
+          ++ties;
+          ++roundCount;
+      //if the computer beats the player//
+        } else if ((playerSelection == "rock" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "rock") ){
+              alert("Player selected " + playerSelection + " and" + " the Computer selected " + computerSelection + ": You lose...what a wimp" + " -- Choose again!!!");
+              ++cScore;
+              ++roundCount;
+     //if the player beats the computer//
+        } else if ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")){
+              alert("Player selected " + playerSelection + " and" + " the Computer selected " + computerSelection + ": You win, outstanding job!" + " -- Choose again!!!");
+              ++pScore;
+              ++roundCount;
+
+      //if something weird happens//
+        }  else  {
+        alert("something has gone terribly wrong");
+
+      }
+    }
+  }
+
+
+
+
+
+
+  </script>
+</body>
+</html>
